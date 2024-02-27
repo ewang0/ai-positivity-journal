@@ -11,28 +11,33 @@ const openai = new OpenAI({
   apiKey: OPENAI_API_KEY, // This is the default and can be omitted
 });
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
-  if (req.method === 'GET') {
-    try {
-      res.status(200).json({ message: "Success", OPENAI_API_KEY: OPENAI_API_KEY });
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  } else if (req.method === 'POST') {
-    const { prompt } = req.body;
-    if (!prompt || typeof prompt !== 'string') {
-      return res.status(400).json({ error: 'Invalid prompt provided' });
-    }
-
-    try {
-      const completion = await getChatCompletion(prompt);
-      // const savedData = await saveToDatabase(prompt, completion);
-      res.status(200).json({ completion });
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  }
+export function GET(request: Request) {
+  return new Response(`Hello from ${process.env.OPENAI_API_KEY}`);
 }
+
+// export default async function handler(req: VercelRequest, res: VercelResponse) {
+//   if (req.method === 'GET') {
+//     res.status(200).json({ message: "Success", OPENAI_API_KEY: OPENAI_API_KEY });
+//     try {
+//       res.status(200).json({ message: "Success", OPENAI_API_KEY: OPENAI_API_KEY });
+//     } catch (error) {
+//       console.error('Error:', error);
+//     }
+//   } else if (req.method === 'POST') {
+//     const { prompt } = req.body;
+//     if (!prompt || typeof prompt !== 'string') {
+//       return res.status(400).json({ error: 'Invalid prompt provided' });
+//     }
+
+//     try {
+//       const completion = await getChatCompletion(prompt);
+//       // const savedData = await saveToDatabase(prompt, completion);
+//       res.status(200).json({ completion });
+//     } catch (error) {
+//       console.error('Error:', error);
+//     }
+//   }
+// }
 
 async function getChatCompletion(prompt: string): Promise<any> {
   const completion = await openai.chat.completions.create({

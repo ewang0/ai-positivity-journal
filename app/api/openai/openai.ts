@@ -10,6 +10,7 @@ const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const openai = new OpenAI({
   apiKey: OPENAI_API_KEY, // This is the default and can be omitted
 });
+export const dynamic = 'force-dynamic'; // static by default, unless reading the request
 
 export function GET(request: Request) {
   return new Response(`Hello from ${process.env.OPENAI_API_KEY}`);

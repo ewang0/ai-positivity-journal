@@ -11,13 +11,12 @@ const openai = new OpenAI({
   apiKey: OPENAI_API_KEY, // This is the default and can be omitted
 });
 
-export default async (req: VercelRequest, res: VercelResponse) => {
-  if (req.method === 'GET') {
-      return res.json({ resultstatus: 'SUCCESS', message: 'OPENAI HERE' });
-  }
+export async function GET(res: VercelResponse) {
+  return res.json({ resultstatus: 'SUCCESS', message: 'OPENAI HERE' });
+}
 
-  if (req.method === 'POST') {
-      const { prompt } = req.body;
+export async function POST(req: VercelRequest, res: VercelResponse) {
+  const { prompt } = req.body;
       try {
           const response = await openai.chat.completions.create({
               model: "gpt-4",
@@ -34,12 +33,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
           console.error(error);
           return res.status(500).json({ message: 'Internal Server Error' });
       }
-  }
-
-  // Handle unsupported methods
-  res.setHeader('Allow', ['GET', 'POST']);
-  return res.status(405).end(`Method ${req.method} Not Allowed`);
-};
+}
 
 // export default async function handler(req: VercelRequest, res: VercelResponse) {
 //   if (req.method === 'GET') {

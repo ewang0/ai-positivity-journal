@@ -10,11 +10,36 @@ const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const openai = new OpenAI({
   apiKey: OPENAI_API_KEY, // This is the default and can be omitted
 });
-export const dynamic = 'force-dynamic'; // static by default, unless reading the request
 
-export function GET(request: Request) {
-  return new Response(`Hello from ${process.env.OPENAI_API_KEY}`);
-}
+export default async (req: VercelRequest, res: VercelResponse) => {
+  if (req.method === 'GET') {
+      return res.json({ resultstatus: 'SUCCESS', message: 'OPENAI HERE' });
+  }
+
+  if (req.method === 'POST') {
+      const { prompt } = req.body;
+      try {
+          const response = await openai.chat.completions.create({
+              model: "gpt-4",
+              messages: [
+                  {
+                      role: "user",
+                      content: prompt,
+                  },
+              ],
+          });
+
+          return res.json({ message: response.choices[0].message.content });
+      } catch (error) {
+          console.error(error);
+          return res.status(500).json({ message: 'Internal Server Error' });
+      }
+  }
+
+  // Handle unsupported methods
+  res.setHeader('Allow', ['GET', 'POST']);
+  return res.status(405).end(`Method ${req.method} Not Allowed`);
+};
 
 // export default async function handler(req: VercelRequest, res: VercelResponse) {
 //   if (req.method === 'GET') {
@@ -40,14 +65,14 @@ export function GET(request: Request) {
 //   }
 // }
 
-async function getChatCompletion(prompt: string): Promise<any> {
-  const completion = await openai.chat.completions.create({
-    messages: [{ role: 'user', content: prompt }],
-    model: 'gpt-4',
-  });
+// export async function getChatCompletion(prompt: string): Promise<any> {
+//   const completion = await openai.chat.completions.create({
+//     messages: [{ role: 'user', content: prompt }],
+//     model: 'gpt-4',
+//   });
 
-  return completion.choices[0].message.content;
-}
+//   return completion.choices[0].message.content;
+// }
 
 // async function saveToDatabase(prompt: string, completion: string): Promise<any> {
 //   const dataToSave = { prompt, completion };

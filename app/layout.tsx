@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "AI Naming App",
-  description: "Built with Next.js, Tailwind CSS, AWS Lambda, PlanetScale DB, and OpenAI",
+  title: "AI Positivity Journal",
+  description: "Built with Next.js, Tailwind CSS, PlanetScale DB, OpenAI, and Vercel AI SDK",
 };
 
 export default function RootLayout({

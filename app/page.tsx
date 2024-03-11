@@ -1,7 +1,11 @@
 import FormField from "./formfield";
 import History from "./history";
+import { useChat } from "ai/react";
 
 export default function Home() {
+  const { messages, input, handleInputChange, handleSubmit } = useChat();
+  console.log("messages:", messages);
+  
   return (
     <main className="flex flex-col max-w-[1080px] m-auto">
       <div className="flex flex-col justify-center items-center w-full py-12 border-b-2">

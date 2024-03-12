@@ -4,12 +4,21 @@ import History from "./history";
 import { useRef } from "react";
 import { useChat } from "ai/react";
 import { VercelIcon, GithubIcon, LoadingCircle, SendIcon } from "./icons";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 export default function Home() {
   const formRef = useRef<HTMLFormElement>(null);
-  const { messages, input, setInput, handleInputChange, handleSubmit, isLoading } = useChat();
+  const { messages, input, setInput, handleInputChange, handleSubmit, isLoading} = useChat();
   console.log("messages:", messages);
   // console.log("messages:", messages);
+
+  const ButtonLoading = (
+    <div className="flex gap-x-2 justify-center items-center">
+      <p>Loading</p>
+      <LoadingCircle /> 
+    </div>
+  );
 
   return (
     <main className="flex flex-col max-w-[1080px] m-auto">
@@ -43,14 +52,27 @@ export default function Home() {
                   }}
               />
             <button className="flex justify-center items-center bg-blue-500 w-full hover:bg-blue-400 mt-3 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
-              {isLoading ? <LoadingCircle /> : "Generate Positivity"}
+              {isLoading ? ButtonLoading : "Generate Positivity"}
             </button>
           </form>
         </div>
         <div className="flex flex-col w-full pt-8">
           <div className="block text-white text-lg font-bold mb-3">See the bright side here:</div>
-          <div className="h-full bg-stone-800 rounded py-3 px-4">
-            {messages.length > 0 && messages[1]?.content}
+          <div className="h-full max-h-[346px] overflow-scroll bg-stone-800 rounded py-3 px-4">
+            {messages[messages.length - 1]?.role === "user" ? <LoadingCircle/> : 
+              <ReactMarkdown
+                  className="prose mt-1 w-full break-words prose-p:leading-relaxed"
+                  remarkPlugins={[remarkGfm]}
+                  components={{
+                    // open links in new tab
+                    a: (props) => (
+                      <a {...props} target="_blank" rel="noopener noreferrer" />
+                    ),
+                  }}
+                >
+                  {messages[messages.length - 1]?.role === "assistant" ? messages[messages.length - 1]?.content : ''}
+              </ReactMarkdown>
+            }
           </div>
           <button className="bg-blue-500 w-full hover:bg-blue-400 mt-4 text-white font-bold py-2 px-4 border-b-4 border-blue-700 opacity-50 cursor-not-allowed rounded">
             Save

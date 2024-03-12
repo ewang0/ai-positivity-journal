@@ -5,7 +5,7 @@ interface FormFieldProps {
 
 const FormField: React.FC<FormFieldProps> = ({ header, placeholder}) => {
     return (
-        <div className="w-full mt-8">
+        <form className="w-full mt-8">
             <label className="block text-white text-lg font-bold mb-3" htmlFor="username">
                 {header}
             </label>
@@ -15,7 +15,7 @@ const FormField: React.FC<FormFieldProps> = ({ header, placeholder}) => {
                 rows={16}
                 placeholder={placeholder}
             />
-        </div>
+        </form>
     );
 }
 

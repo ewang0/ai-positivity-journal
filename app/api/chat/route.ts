@@ -10,23 +10,21 @@ const openai = new OpenAI({
   apiKey: OPENAI_API_KEY, // This is the default and can be omitted
 });
 
+// IMPORTANT! Set the runtime to edge
 export const runtime = 'edge';
 
 export async function POST(req: Request) {
-  // Extract the `prompt` from the body of the request
-  const { prompt } = await req.json();
+  const { messages } = await req.json();
 
-  // Ask OpenAI for a streaming completion given the prompt
-  const response = await openai.completions.create({
-    model: 'gpt-4',
-    max_tokens: 2000,
+  // Ask OpenAI for a streaming chat completion given the prompt
+  const response = await openai.chat.completions.create({
+    model: 'gpt-3.5-turbo',
     stream: true,
-    prompt,
+    messages,
   });
 
   // Convert the response into a friendly text-stream
   const stream = OpenAIStream(response);
-
   // Respond with the stream
   return new StreamingTextResponse(stream);
 }

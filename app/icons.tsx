@@ -6,7 +6,7 @@ export const VercelIcon = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="M37.5274 0L75.0548 65H0L37.5274 0Z" fill="#000000" />
+      <path d="M37.5274 0L75.0548 65H0L37.5274 0Z" fill="#FFFFFF" />
     </svg>
   );
 };

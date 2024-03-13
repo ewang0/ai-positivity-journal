@@ -13,6 +13,7 @@ export default function Home() {
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const [originalInput, setOriginalInput] = useState('');
+  const [showResponsePlaceholder, setShowResponsePlaceholder] = useState(true);
 
   const initialMessages: Message[] = [
     {
@@ -46,6 +47,12 @@ export default function Home() {
     <div className="flex gap-x-2 justify-center items-center">
       <p>Loading</p>
       <LoadingCircle /> 
+    </div>
+  );
+
+  const ResponsePlaceholder = (
+    <div className="h-full max-h-[400px] overflow-scroll bg-zinc-800 rounded py-3 px-4">
+      <p className="text-neutral-500">A positive response tailored to your specific situation will appear here.</p>
     </div>
   );
 
@@ -96,7 +103,13 @@ export default function Home() {
                   required
                   onChange={(e) => setInput(e.target.value)}
               />
-            <button onClick={() => setOriginalInput(input)} className="flex justify-center items-center bg-blue-500 w-full hover:bg-blue-400 mt-3 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+            <button 
+              onClick={() => {
+                setOriginalInput(input);
+                setShowResponsePlaceholder(false);
+              }} 
+              className="flex justify-center items-center bg-blue-500 w-full hover:bg-blue-400 mt-3 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+            >
               {isLoading ? ButtonLoading : "Generate Positivity"}
             </button>
           </form>
@@ -105,11 +118,12 @@ export default function Home() {
           <div className="flex flex-col w-full pt-9">
             <div className="block text-white text-lg font-bold mb-3">Original Entry:</div>
             <div className="h-[400px] max-h-[400px] overflow-scroll bg-zinc-800 rounded py-3 px-4">
-              {originalInput}
+              {originalInput ? originalInput : <p className="text-neutral-500">Your original journal entry will appear here.</p>}
             </div>
           </div>
           <div className="flex flex-col w-full pt-9">
             <div className="block text-white text-lg font-bold mb-3">Positive Response:</div>
+            {showResponsePlaceholder && ResponsePlaceholder}
             <div className="h-full max-h-[400px] overflow-scroll bg-zinc-800 rounded py-3 px-4">
               {messages[messages.length - 1]?.role === "user" ? <LoadingCircle/> : 
                 <ReactMarkdown
@@ -126,9 +140,6 @@ export default function Home() {
                 </ReactMarkdown>
               }
             </div>
-            {/* <button className="bg-blue-500 w-full hover:bg-blue-400 mt-[18px] text-white font-bold py-2 px-4 border-b-4 border-blue-700 opacity-50 cursor-not-allowed rounded">
-              Save
-            </button> */}
           </div>
           {/* <button className="bg-blue-500 w-full hover:bg-blue-400 mt-[18px] text-white font-bold py-2 px-4 border-b-4 border-blue-700 opacity-50 cursor-not-allowed rounded">
             Save Results

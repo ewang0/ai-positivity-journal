@@ -26,5 +26,5 @@ export const STRINGS = {
         },
     ],
     REQUEST_PROMPT: "Please take the following negative situation and provide a quote from a famous philosopher or historical figure that may provide some guidance. Please include any supporting comments. Please return the quote in bolded text.",
-    INTRO: "Negative events can range from minor annoyances to major obstacles in our lives. AI Positivity Journal streams powerful insights from OpenAI’s Chat Completions API to provide reassurance, guidance, and perspective on any difficult situation we humans might face. Click the “Generate Positivity” button to hear quotes from philosophers, artists, writers, and other important historical figures."
+    INTRO: "AI Positivity Journal streams data from OpenAI’s Chat Completions API to provide reassurance, guidance, and perspective on any difficult situation we humans might face. Click the “Generate Positivity” button to hear quotes from philosophers, artists, writers, and other important historical figures."
 }

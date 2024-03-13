@@ -10,11 +10,11 @@ export const STRINGS = {
         },
         {
             title: "🧑🏻‍🚒 First Oncall Shift",
-            content: "The shrill ring of my pager yanked me out of sleep at 3 AM, signaling my first real emergency on the job. Staring at the screen, I felt a mix of panic and cluelessness; the issue was complex, and I had no immediate idea how to solve it. The weight of responsibility was suddenly very real, and the quiet of the night offered no comfort, only the pressing need to find a solution quickly. This is a steep, unexpected learning curve, but I'm determined to rise to the challenge, no matter how daunting it feels right now."
+            content: "The shrill ring of my pager yanked me out of sleep at 3 AM, signaling my first real emergency on the job. Staring at the screen, I felt a mix of panic and cluelessness; the issue was complex, and I had no immediate idea how to solve it. The weight of responsibility was suddenly very real, and the quiet of the night offered no comfort, only the pressing need to find a solution quickly."
         },
         {
             title: "⚙️ Merge Conflict",
-            content: "Today, I faced the challenging reality of merge conflicts for the first time, as my project updates clashed dramatically with the main branch. This situation highlighted the critical need for constant communication with my team and keeping my work up-to-date. The tedious process of resolving each conflict line by line was a stark lesson in the importance of synchronization with the team's efforts. Moving forward, I'm more committed than ever to ensure seamless integration of my work, learning the value of proactive updates and clearer communication."
+            content: "Today, I was completely overwhelmed by a merge conflict, feeling like I've hit a wall that I just can't scale. The whole experience has left me doubting my abilities. It's a heavy blow to my confidence, making me question my future in this field."
         },
         {
             title: "💔 Breakup of a Relationship",

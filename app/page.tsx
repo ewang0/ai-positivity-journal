@@ -109,7 +109,7 @@ export default function Home() {
             </div>
           </div>
           <div className="flex flex-col w-full pt-9">
-            <div className="block text-white text-lg font-bold mb-3">Generated Positivity:</div>
+            <div className="block text-white text-lg font-bold mb-3">Positive Response:</div>
             <div className="h-full max-h-[400px] overflow-scroll bg-zinc-800 rounded py-3 px-4">
               {messages[messages.length - 1]?.role === "user" ? <LoadingCircle/> : 
                 <ReactMarkdown

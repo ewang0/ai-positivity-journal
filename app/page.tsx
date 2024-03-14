@@ -126,7 +126,7 @@ export default function Home() {
           <div className="flex flex-col w-full pt-8 md:pl-6 md:pt-0 ">
             <div className="block text-white text-lg font-bold mb-3">Positive Response:</div>
             {showResponsePlaceholder ? ResponsePlaceholder :
-              <div className="h-[400px] max-h-[400px] overflow-auto bg-zinc-800 rounded py-3 px-4">
+              <div className="h-[400px] max-h-[400px] overflow-y-auto bg-zinc-800 rounded py-3 px-4">
                 {messages[messages.length - 1]?.role === "user" ? <LoadingCircle/> : 
                   <ReactMarkdown
                       className="prose mt-1 w-full break-words prose-p:leading-relaxed"

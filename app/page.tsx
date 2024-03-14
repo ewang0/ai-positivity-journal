@@ -95,7 +95,7 @@ export default function Home() {
               </label>
               <textarea 
                   ref={inputRef}
-                  className="bg-white text-gray-700 w-full border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white resize-none" 
+                  className="bg-white text-gray-700 w-full overflow-y-auto border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white resize-none" 
                   id="grid-first-name" 
                   rows={8}
                   placeholder={"Ex: “This morning, my car wouldn't start, making me late for an important meeting. As I waited for the tow truck, frustration and anxiety washed over me. It seemed like the day was set to be a disaster from the start.”"}
@@ -118,7 +118,7 @@ export default function Home() {
           <div className="flex flex-col w-full md:pr-6 md:border-r border-zinc-500">
             <div className="block text-white text-lg font-bold mb-3">Original Entry:</div>
             <div className="">
-              <div className="h-[400px] max-h-[400px] bg-zinc-800 rounded py-3 px-4">
+              <div className="h-[400px] max-h-[400px] overflow-y-auto bg-zinc-800 rounded py-3 px-4">
                 {originalInput ? originalInput : <p className="text-neutral-500">Your original journal entry will appear here.</p>}
               </div>
             </div>

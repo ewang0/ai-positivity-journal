@@ -57,7 +57,7 @@ export default function Home() {
   );
 
   return (
-    <main className="px-16">
+    <main className="px-8 sm:px-16 md:px-24">
       <div className="flex flex-col max-w-[880px] m-auto">
         <div className="flex flex-col justify-center items-center w-full py-12 border-b">
           <h1 className="font-mono font-bold mb-5 text-center text-5xl">AI Positivity Journal</h1>

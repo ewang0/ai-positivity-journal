@@ -59,7 +59,7 @@ export default function Home() {
   return (
     <main className="px-16">
       <div className="flex flex-col max-w-[880px] m-auto">
-        <div className="flex flex-col justify-center items-center w-full py-12 border-b-2">
+        <div className="flex flex-col justify-center items-center w-full py-12 border-b">
           <h1 className="font-mono font-bold mb-5 text-center text-5xl">AI Positivity Journal</h1>
           <p className="font-sans max-w-sm text-center">Built with Next.js, Tailwind CSS, PlanetScale DB, OpenAI streaming, and Vercel AI SDK</p>
         </div>

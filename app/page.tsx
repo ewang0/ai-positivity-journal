@@ -51,7 +51,7 @@ export default function Home() {
   );
 
   const ResponsePlaceholder = (
-    <div className="h-full max-h-[400px] overflow-scroll bg-zinc-800 rounded py-3 px-4">
+    <div className="h-[400px] max-h-[400px] overflow-scroll bg-zinc-800 rounded py-3 px-4">
       <p className="text-neutral-500">A positive response tailored to your specific situation will appear here.</p>
     </div>
   );
@@ -63,14 +63,14 @@ export default function Home() {
           <h1 className="font-mono font-bold mb-5 text-center text-5xl">AI Positivity Journal</h1>
           <p className="font-sans max-w-sm text-center">Built with Next.js, Tailwind CSS, PlanetScale DB, OpenAI streaming, and Vercel AI SDK</p>
         </div>
-        <div className="block text-white text-lg font-bold mb-16 mt-8 max-w-3xl">
+        <div className="block text-white text-lg mb-16 mt-8 max-w-3xl">
           {STRINGS.INTRO}
         </div>
         <div className="flex flex-col">
           <div className="block text-white text-lg font-bold mb-4 max-w-3xl">
             Try some examples:
           </div>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 auto-rows-fr gap-4 sm:grid-cols-3">
             {STRINGS.EXAMPLES.map((example, i) => (
               <button 
                 key={i} 
@@ -91,7 +91,7 @@ export default function Home() {
             className="w-full mt-9"
           >
               <label className="block text-white text-lg font-bold mb-3" htmlFor="username">
-                Describe your negative life event here:
+                Describe your life event here:
               </label>
               <textarea 
                   ref={inputRef}
@@ -114,40 +114,43 @@ export default function Home() {
             </button>
           </form>
         </div>
-        <div className='grid grid-cols-2 gap-x-8'>
-          <div className="flex flex-col w-full pt-9">
+        <div className='grid grid-cols-1 mt-9 md:grid-cols-2'>
+          <div className="flex flex-col w-full md:pr-6 md:border-r border-zinc-500">
             <div className="block text-white text-lg font-bold mb-3">Original Entry:</div>
-            <div className="h-[400px] max-h-[400px] overflow-scroll bg-zinc-800 rounded py-3 px-4">
-              {originalInput ? originalInput : <p className="text-neutral-500">Your original journal entry will appear here.</p>}
+            <div className="">
+              <div className="h-[400px] max-h-[400px] overflow-scroll bg-zinc-800 rounded py-3 px-4">
+                {originalInput ? originalInput : <p className="text-neutral-500">Your original journal entry will appear here.</p>}
+              </div>
             </div>
           </div>
-          <div className="flex flex-col w-full pt-9">
+          <div className="flex flex-col w-full pt-8 md:pl-6 md:pt-0 ">
             <div className="block text-white text-lg font-bold mb-3">Positive Response:</div>
-            {showResponsePlaceholder && ResponsePlaceholder}
-            <div className="h-full max-h-[400px] overflow-scroll bg-zinc-800 rounded py-3 px-4">
-              {messages[messages.length - 1]?.role === "user" ? <LoadingCircle/> : 
-                <ReactMarkdown
-                    className="prose mt-1 w-full break-words prose-p:leading-relaxed"
-                    remarkPlugins={[remarkGfm]}
-                    components={{
-                      // open links in new tab
-                      a: (props) => (
-                        <a {...props} target="_blank" rel="noopener noreferrer" />
-                      ),
-                    }}
-                  >
-                    {messages[messages.length - 1]?.role === "assistant" ? messages[messages.length - 1]?.content : ''}
-                </ReactMarkdown>
-              }
-            </div>
+            {showResponsePlaceholder ? ResponsePlaceholder :
+              <div className="h-[400px] max-h-[400px] overflow-scroll bg-zinc-800 rounded py-3 px-4">
+                {messages[messages.length - 1]?.role === "user" ? <LoadingCircle/> : 
+                  <ReactMarkdown
+                      className="prose mt-1 w-full break-words prose-p:leading-relaxed"
+                      remarkPlugins={[remarkGfm]}
+                      components={{
+                        // open links in new tab
+                        a: (props) => (
+                          <a {...props} target="_blank" rel="noopener noreferrer" />
+                        ),
+                      }}
+                    >
+                      {messages[messages.length - 1]?.role === "assistant" ? messages[messages.length - 1]?.content : ''}
+                  </ReactMarkdown>
+                }
+              </div>
+            }
           </div>
           {/* <button className="bg-blue-500 w-full hover:bg-blue-400 mt-[18px] text-white font-bold py-2 px-4 border-b-4 border-blue-700 opacity-50 cursor-not-allowed rounded">
             Save Results
           </button> */}
         </div>
         {/* <History /> */}
-        <div className="flex justify-center items-center gap-4 mb-12 mt-16">
-          <p>Deployed with Vercel</p>
+        <div className="flex justify-center items-center gap-2 mb-12 mt-16">
+          <p>Deployed with <b>Vercel</b></p>
           <VercelIcon />
         </div>
       </div>

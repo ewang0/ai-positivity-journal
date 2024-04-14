@@ -25,6 +25,17 @@ export const STRINGS = {
             content: "I learned a tough lesson today on why rebasing matters. After merging my feature without rebasing first, the commit history turned into a chaotic mess, making it hard for anyone to follow. It dawned on me how much easier things would have been with regular rebasing. From now on, I'll make sure to keep my branch aligned with the main branch to prevent this headache."
         },
     ],
-    REQUEST_PROMPT: "Please take the following negative situation and provide a quote from a famous philosopher or historical figure that may provide some guidance. Please include any supporting comments. Please return the quote in bolded text.",
-    INTRO: "AI Positivity Journal streams data from OpenAI’s Chat Completions API to provide reassurance, guidance, and perspective on any difficult situation we humans might face. Click the “Generate Positivity” button to hear quotes and guidance from philosophers, artists, writers, and other important historical figures."
+    REQUEST_PROMPT: 'For each following journal entry I send you, please provide the most relevant quote from a famous philosopher, scientist, inventor, writer, artist, musician, activist, comedian, or other historical figure that may provide some guidance and a positive outlook for this specific situation. Please include any supporting comments that are specific to the event described. Please include terminology from the original journal entry in your response. In your response, please provide reassurance and a possible silver lining. Please return the quote in bolded text. Please avoid using first person in your response. If the provided text is not a journal entry, please respond with "Please provide your input in the form of a journal entry."',
+    INTRO: "AI Positivity Journal streams data from OpenAI’s Chat Completions API to provide reassurance, guidance, and perspective on any difficult situation we humans might face. Click the “Generate Positivity” button to hear quotes and guidance from philosophers, artists, writers, and other important historical figures.",
+    RESPONSE_PLACEHOLDER: "A positive response tailored to your specific situation will appear here.",
+    TITLE: "AI Positivity Journal",
+    BUILT_WITH: "Built with Next.js, Tailwind CSS, PlanetScale DB, OpenAI streaming, and Vercel AI SDK",
+    EXAMPLES_HEADER: "Try some examples:",
+    DESCRIBE_EVENT_HEADER: "Describe your life event here:",
+    DESCRIBE_EVENT_PLACEHOLDER: "Ex: “This morning, my car wouldn't start, making me late for an important meeting. As I waited for the tow truck, frustration and anxiety washed over me. It seemed like the day was set to be a disaster from the start.”",
+    ORIGINAL_ENTRY_PLACEHOLDER: "Your original journal entry will appear here.",
+    ORIGINAL_ENTRY_HEADER: "Orginial Entry:",
+    POSITIVE_RESPONSE_HEADER:"Positive Response:"
+
+
 }
